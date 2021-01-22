@@ -5,6 +5,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
+    "build": "grunt",
     "test": "grunt jshint"
   },
   "devDependencies": {
@@ -41,5 +42,8 @@
     "zoom"
   ],
   "author": "Dmitry Semenov (http://dimsemenov.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
 }

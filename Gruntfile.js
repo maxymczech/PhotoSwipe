@@ -42,7 +42,11 @@ module.exports = function(grunt) {
       files: ['dist']
     },
     
-    sass: {                            
+    sass: {
+      options: {
+        implementation: require('node-sass'),
+        sourceMap: true
+      },
       dist: {                      
         files: {      
           'dist/photoswipe.css': 'src/css/main.scss',
@@ -92,6 +96,7 @@ module.exports = function(grunt) {
       }
     },
 
+    /*
     jekyll: {
       dev: {
         options: {
@@ -111,6 +116,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    */
 
     copy: {
       dev: {
@@ -248,14 +254,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-jekyll');
+  // grunt.loadNpmTasks('grunt-jekyll');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-svgmin');
 
   // Default task.
-  grunt.registerTask('default', ['sass', 'autoprefixer', 'pswpbuild','uglify', 'copy', 'jekyll:dev']);
+  grunt.registerTask('default', ['sass', 'autoprefixer', 'pswpbuild','uglify', 'copy'/* , 'jekyll:dev' */]);
 
-  grunt.registerTask('production', ['sass', 'autoprefixer', 'pswpbuild', 'uglify', 'copy', 'cssmin', 'jekyll:production']);
+  grunt.registerTask('production', ['sass', 'autoprefixer', 'pswpbuild', 'uglify', 'copy', 'cssmin'/*, 'jekyll:production' */]);
   grunt.registerTask('nosite', ['sass', 'autoprefixer', 'pswpbuild', 'uglify']);
   grunt.registerTask('hint', ['jshint']);
 
