@@ -191,6 +191,9 @@ var _getItemAt,
 		}
 
 		if(!img) {
+			if (!item.container) {
+				return;
+			}
 			img = item.container.lastChild;
 		}
 

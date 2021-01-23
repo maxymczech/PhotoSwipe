@@ -803,8 +803,10 @@ var publicMethods = {
 		_currPanBounds = self.currItem.bounds;	
 		_startZoomLevel = _currZoomLevel = self.currItem.initialZoomLevel;
 
-		_panOffset.x = _currPanBounds.center.x;
-		_panOffset.y = _currPanBounds.center.y;
+		if (_currPanBounds && _currPanBounds.center) {
+			_panOffset.x = _currPanBounds.center.x;
+			_panOffset.y = _currPanBounds.center.y;
+		}
 
 		if(emulateSetContent) {
 			_shout('afterChange');
@@ -974,7 +976,7 @@ var publicMethods = {
 		_startZoomLevel = _currZoomLevel = self.currItem.initialZoomLevel;
 		_currPanBounds = self.currItem.bounds;
 
-		if(_currPanBounds) {
+		if(_currPanBounds && _currPanBounds.center) {
 			_panOffset.x = _currPanBounds.center.x;
 			_panOffset.y = _currPanBounds.center.y;
 			_applyCurrentZoomPan( true );

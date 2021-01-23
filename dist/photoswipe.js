@@ -1,4 +1,4 @@
-/*! PhotoSwipe - v4.1.3 - 2021-01-22
+/*! PhotoSwipe - v4.1.3 - 2021-01-23
 * http://photoswipe.com
 * Copyright (c) 2021 Dmitry Semenov; */
 (function (root, factory) { 
@@ -1101,8 +1101,10 @@ var publicMethods = {
 		_currPanBounds = self.currItem.bounds;	
 		_startZoomLevel = _currZoomLevel = self.currItem.initialZoomLevel;
 
-		_panOffset.x = _currPanBounds.center.x;
-		_panOffset.y = _currPanBounds.center.y;
+		if (_currPanBounds && _currPanBounds.center) {
+			_panOffset.x = _currPanBounds.center.x;
+			_panOffset.y = _currPanBounds.center.y;
+		}
 
 		if(emulateSetContent) {
 			_shout('afterChange');
@@ -1272,7 +1274,7 @@ var publicMethods = {
 		_startZoomLevel = _currZoomLevel = self.currItem.initialZoomLevel;
 		_currPanBounds = self.currItem.bounds;
 
-		if(_currPanBounds) {
+		if(_currPanBounds && _currPanBounds.center) {
 			_panOffset.x = _currPanBounds.center.x;
 			_panOffset.y = _currPanBounds.center.y;
 			_applyCurrentZoomPan( true );
@@ -2882,6 +2884,9 @@ var _getItemAt,
 		}
 
 		if(!img) {
+			if (!item.container) {
+				return;
+			}
 			img = item.container.lastChild;
 		}
 
